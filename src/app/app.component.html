@@ -1,0 +1,29 @@
+<div class="container">
+
+  <div class="col-12">
+    <app-grid-component [size]="size" [turtlePos]="turtle.position" [parcours]="parcours"></app-grid-component>
+  </div>
+
+  <div class="col-12" style="padding-top: 10px;">
+
+    <div class="col-3 offset-4">
+      <button type="button" class="btn btn-default col-2 offset-7" (click)="turtle.turnTop();turtle.step();">
+        <i class="fa fa-arrow-up"></i>
+      </button>
+    </div>
+
+    <div class="col-3 offset-4">
+      <button type="button" class="btn btn-default col-2 offset-8" (click)="turtle.turnRight();turtle.step();">
+        <i class="fa fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <div class="col-3 offset-4">
+      <button type="button" class="btn btn-default col-2 offset-7" (click)="turtle.turnBottom();turtle.step();">
+        <i class="fa fa-arrow-down"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+

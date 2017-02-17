@@ -1,0 +1,7 @@
+<div class="grid">
+  <case *ngFor="let c of cases"
+        [coordinates]="c"
+        [isBelongToTheCourse]="belongToTheCourse(c)"
+        [isTheTurtleOver]="turtlePos.x == c.x && turtlePos.y == c.y">
+  </case>
+</div>
