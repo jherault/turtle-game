@@ -30,8 +30,6 @@ export class AppComponent implements OnInit {
     this.turtle = new Turtle();
     this.turtle.position = new Coordinates(this.parcours[0].x, this.parcours[0].y);
     this.turtle.direction = new Coordinates(this.parcours[1].x - this.parcours[0].x, this.parcours[1].y - this.parcours[0].y);
-    console.dir(this.parcours);
-    console.dir(this.turtle.position);
   }
 
   /**
@@ -63,27 +61,17 @@ export class AppComponent implements OnInit {
 
   /**
    * methode permettant d'inserer les bordures
+   * on applique des bordures a gauche si la coordonnee juxtapose la case de gauche et que celle-ci ne la precede pas dans le parcours
    */
   private borderize(): void {
     for (let i: number = 0; i < this.parcours.length; i++) {
       let current: Coordinates = this.parcours[i];
-      this.applyBorder(current, i);
-    }
-  }
-
-  /**
-   * on applique des bordures a gauche si la coordonnee juxtapose la case de gauche et que celle-ci ne la precede pas dans le parcours
-   * @param current la case du parcours courante
-   * @param index l'index de la case dans le parcours
-   */
-  private applyBorder(current:Coordinates, index:number): void {
-
-    if (index != 0) {
-      if (!(this.parcours[index -1].x == current.x - 1 && this.parcours[index - 1].y == current.y))
+      if (i != 0) {
+      if (!(this.parcours[i -1].x == current.x - 1 && this.parcours[i - 1].y == current.y))
         if (this.coordinatesPresentInCourse(new Coordinates(current.x-1, current.y)))
           current.l = true;
+      }
     }
-
   }
 
   /**
@@ -122,13 +110,19 @@ export class AppComponent implements OnInit {
 
     switch(event.key) {
       case 'ArrowUp':
-        this.turtle.turnTop();this.turtle.step();
+        if (this.turtle.position.y < this.size - 1){
+          this.turtle.turnTop();this.turtle.step();
+        }
         break;
       case 'ArrowDown':
-        this.turtle.turnBottom();this.turtle.step();
+        if (this.turtle.position.y > 0){
+          this.turtle.turnBottom();this.turtle.step();
+        }
         break;
       case 'ArrowRight':
-        this.turtle.turnRight();this.turtle.step();
+        if (this.turtle.position.x < this.size - 1) {
+          this.turtle.turnRight();this.turtle.step();
+        }
         break;
       default:break;
     }
