@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {Coordinates} from "../coordinates";
 
 @Component({
-  selector: 'case',
+  selector: '[case]',
   templateUrl: './case.component.html',
   styleUrls: ['./case.component.css']
 })

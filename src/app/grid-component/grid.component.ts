@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {Coordinates} from "../coordinates";
 
 @Component({
-  selector: 'app-grid-component',
+  selector: '[appGridComponent]',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.css']
 })

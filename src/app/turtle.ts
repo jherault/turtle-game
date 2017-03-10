@@ -4,7 +4,6 @@ export class Turtle {
   private _position:Coordinates;
   private _direction:Coordinates;
 
-
   step():void {
     this.position.x += this.direction.x;
     this.position.y += this.direction.y;
@@ -24,24 +23,7 @@ export class Turtle {
     this.direction.x = 0;
     this.direction.y = -1;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
   get position(): Coordinates {
     return this._position;
   }
