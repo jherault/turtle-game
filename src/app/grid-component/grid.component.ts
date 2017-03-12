@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChange} from '@angular/core';
 import {Coordinates} from "../coordinates";
 
 @Component({
@@ -31,8 +31,11 @@ export class GridComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.init();
+  }
+
+  init(): void {
     this.cases = [];
-    console.dir(this.parcours);
     for (let y: number = this.size-1; y >= 0; y--) {
       for (let x: number = 0; x < this.size; x++) {
         let coordinates = new Coordinates(x, y);
@@ -44,4 +47,12 @@ export class GridComponent implements OnInit {
       }
     }
   }
+
+  ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+
+    if (changes['parcours'] && this.parcours) {
+
+        this.init();
+    }
+}
 }

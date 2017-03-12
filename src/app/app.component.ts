@@ -38,6 +38,10 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.size = 5;
     this.level = 1;
+    this.init();
+  }
+
+  init(): void {
     this.instructions = [];
     this.initParcours();
     this.turtle = new Turtle();

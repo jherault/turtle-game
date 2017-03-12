@@ -1,10 +1,8 @@
 <div class="container">
+  <div class="row" style="padding-top: 10px">
+    <div class="col-1">
 
-  <div class="row">
-    <div class="col-1 offset-1">
-      
-      <i *ngFor="let ins of instructions" class="fa col-12" 
-      [ngClass]="{'fa-repeat': ins.label == '90', 
+      <i *ngFor="let ins of instructions" class="fa col-12" [ngClass]="{'fa-repeat': ins.label == '90', 
       'fa-arrow-up': ins.label == 'Top', 
       'fa-arrow-right': ins.label == 'Right', 
       'fa-arrow-down': ins.label == 'Bottom', 
@@ -13,22 +11,21 @@
     </div>
     <div class="col-8" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours">
     </div>
+    <div class="col-2"><i class="fa fa-2x fa-refresh" (click)="init()"></i></div>
+    <div class="col-1">
+        <div class="row">
+          <i class="col-1 fa fa-arrow-up" (click)="turnTurtleTopAndStep()"></i>
+        </div>
+
+        <div class="row">
+          <i class="col-1 offset-2 fa fa-arrow-right" (click)="turnTurtleRightAndStep()"></i>
+        </div>
+
+        <div class="row">
+          <i class="col-1 fa fa-arrow-down" (click)="turnTurtleBottomAndStep()"></i>
+        </div>
+    </div>
   </div>
 
-  <div class="row" style="padding-top: 10px;">
 
-    <div class="col-3 offset-4"> 
-        <i class="col-2 offset-7 fa fa-arrow-up" (click)="turnTurtleTopAndStep()"></i>
-    </div>
-
-    <div class="col-3 offset-4">
-        <i class="col-2 offset-8 fa fa-arrow-right" (click)="turnTurtleRightAndStep()"></i>
-    </div>
-
-    <div class="col-3 offset-4">
-        <i class="col-2 offset-7 fa fa-arrow-down" (click)="turnTurtleBottomAndStep()"></i>
-    </div>
-
-  </div>
 </div>
-
