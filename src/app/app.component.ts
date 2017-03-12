@@ -30,6 +30,9 @@ export class AppComponent implements OnInit {
    */
   private instructions: Array<Instruction>;
 
+
+  private etat: number; // 1 partie en cours, 2 partie gagnee, 3 partie perdue
+
   /**
    * niveau d'utilisation (1 - easy, 2 - medium, 3 - hard, 4 - developer!!!)
    */
@@ -42,6 +45,7 @@ export class AppComponent implements OnInit {
   }
 
   init(): void {
+    this.etat = 1;
     this.instructions = [];
     this.initParcours();
     this.turtle = new Turtle();
@@ -124,81 +128,88 @@ export class AppComponent implements OnInit {
 
   @HostListener('document:keyup', ['$event'])
   keyUp(event: KeyboardEvent) {
+    if (this.etat == 1) {
+      switch (event.key) {
+        case 'ArrowUp':
+          if (this.turtle.position.y < this.size - 1) {
+            switch (this.level) {
+              case 1: this.turnTurtleTopAndStep(); break;
+              default: this.turnUntilDirectionreached(new Coordinates(0, 1)); break;
+            }
+          }
+          break;
+        case 'ArrowDown':
+          if (this.turtle.position.y > 0) {
+            switch (this.level) {
+              case 1: this.turnTurtleBottomAndStep(); break;
+              default: this.turnUntilDirectionreached(new Coordinates(0, -1)); break;
+            }
+          }
+          break;
+        case 'ArrowRight':
+          if (this.turtle.position.x < this.size - 1 && !this.rightCaseHasBorder()) {
+            switch (this.level) {
+              case 1: this.turnTurtleRightAndStep();; break;
+              default: this.turnUntilDirectionreached(new Coordinates(1, 0)); break;
+            }
+          }
+          break;
+        default: break;
+      }
 
-    switch (event.key) {
-      case 'ArrowUp':
-        if (this.turtle.position.y < this.size - 1) {
-         switch(this.level) {
-          case 1: this.turnTurtleTopAndStep();break;
-          default:this.turnUntilDirectionreached(new Coordinates(0,1)); break;
-         }
-        }
-        break;
-      case 'ArrowDown':
-        if (this.turtle.position.y > 0) {
-          switch(this.level) {
-            case 1: this.turnTurtleBottomAndStep();break;
-            default:this.turnUntilDirectionreached(new Coordinates(0,-1)); break;
-          }
-        }
-        break;
-      case 'ArrowRight':
-        if (this.turtle.position.x < this.size - 1 && !this.rightCaseHasBorder()) {
-          switch(this.level) {
-            case 1: this.turnTurtleRightAndStep();;break;
-            default:this.turnUntilDirectionreached(new Coordinates(1,0)); break;
-          }
-        }
-        break;
-      default: break;
+      if (this.parcours[this.parcours.length - 1].x == this.turtle.position.x && this.parcours[this.parcours.length - 1].y == this.turtle.position.y) {
+        this.etat = 2;
+      } else if (this.parcours.filter((c) => { return c.x == this.turtle.position.x && c.y == this.turtle.position.y }).length == 0) {
+        this.etat = 3;
+      }
     }
   }
 
-  turnUntilDirectionreached(direction:Coordinates): void {
+  turnUntilDirectionreached(direction: Coordinates): void {
 
   }
 
-  rotationTurtle90Left(log:boolean = true): void {
+  rotationTurtle90Left(log: boolean = true): void {
     if (log) this.instructions.push(new Instruction("90", this.rotationTurtle90Left))
-    let dir:string = `${this.turtle.direction.x}${this.turtle.direction.y}`;
-    switch(dir) {
-      case '0-1':this.turtle.direction = new Coordinates(1,0);break;
-      case '10': this.turtle.direction = new Coordinates(0,1);break;
+    let dir: string = `${this.turtle.direction.x}${this.turtle.direction.y}`;
+    switch (dir) {
+      case '0-1': this.turtle.direction = new Coordinates(1, 0); break;
+      case '10': this.turtle.direction = new Coordinates(0, 1); break;
       case '01': break;
       default: break;
     }
   }
 
-  rotationTurtle90Right(log:boolean = true): void {
+  rotationTurtle90Right(log: boolean = true): void {
     if (log) this.instructions.push(new Instruction("-90", this.rotationTurtle90Right))
-    let dir:string = `${this.turtle.direction.x}${this.turtle.direction.y}`;
-    switch(dir) {
+    let dir: string = `${this.turtle.direction.x}${this.turtle.direction.y}`;
+    switch (dir) {
       case '0-1': break;
-      case '10': this.turtle.direction = new Coordinates(0,-1);break;
-      case '01': this.turtle.direction = new Coordinates(1,0);break;
+      case '10': this.turtle.direction = new Coordinates(0, -1); break;
+      case '01': this.turtle.direction = new Coordinates(1, 0); break;
       default: break;
     }
   }
 
-  moveTurtleForward(log:boolean = true): void {
+  moveTurtleForward(log: boolean = true): void {
     if (log) this.instructions.push(new Instruction("MoveForward", this.moveTurtleForward))
     this.turtle.step();
   }
 
-  turnTurtleTopAndStep(log:boolean = true): void {
+  turnTurtleTopAndStep(log: boolean = true): void {
     console.log(log);
     if (log) this.instructions.push(new Instruction("Top", this.turnTurtleTopAndStep))
     this.turtle.turnTop();
     this.turtle.step();
   }
 
-  turnTurtleBottomAndStep(log:boolean = true): void {
+  turnTurtleBottomAndStep(log: boolean = true): void {
     if (log) this.instructions.push(new Instruction("Bottom", this.turnTurtleBottomAndStep))
     this.turtle.turnBottom();
     this.turtle.step();
   }
 
-  turnTurtleRightAndStep(log:boolean = true): void {
+  turnTurtleRightAndStep(log: boolean = true): void {
     if (log) this.instructions.push(new Instruction("Right", this.turnTurtleRightAndStep))
     this.turtle.turnRight();
     this.turtle.step();
@@ -206,5 +217,12 @@ export class AppComponent implements OnInit {
 
   rightCaseHasBorder(): boolean {
     return this.parcours.filter(c => c.y == this.turtle.position.y && c.x == this.turtle.position.x + 1 && c.l).length == 1;
+  }
+
+  play(): void {
+
+    this.instructions.forEach((ins) => {
+      ins.execute();
+    });
   }
 }
