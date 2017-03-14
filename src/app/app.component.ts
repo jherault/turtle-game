@@ -38,10 +38,19 @@ export class AppComponent implements OnInit {
    */
   private level: number;
 
+  /**
+   * Delai pour le replay des instructions (100-1000)
+   */
+  private replayDelay: number;
+
   ngOnInit() {
     this.size = 5;
     this.level = 1;
+    this.replayDelay = 200;
     this.init();
+    this.turnTurtleTopAndStep.bind(this);
+    this.turnTurtleBottomAndStep.bind(this);
+    this.turnTurtleRightAndStep.bind(this);
   }
 
   init(): void {
@@ -166,11 +175,11 @@ export class AppComponent implements OnInit {
   }
 
   turnUntilDirectionreached(direction: Coordinates): void {
-
+    //TODO
   }
 
   rotationTurtle90Left(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction("90", this.rotationTurtle90Left))
+    if (log) this.instructions.push(new Instruction(this, "90", this.rotationTurtle90Left))
     let dir: string = `${this.turtle.direction.x}${this.turtle.direction.y}`;
     switch (dir) {
       case '0-1': this.turtle.direction = new Coordinates(1, 0); break;
@@ -181,7 +190,7 @@ export class AppComponent implements OnInit {
   }
 
   rotationTurtle90Right(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction("-90", this.rotationTurtle90Right))
+    if (log) this.instructions.push(new Instruction(this, "-90", this.rotationTurtle90Right))
     let dir: string = `${this.turtle.direction.x}${this.turtle.direction.y}`;
     switch (dir) {
       case '0-1': break;
@@ -192,25 +201,24 @@ export class AppComponent implements OnInit {
   }
 
   moveTurtleForward(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction("MoveForward", this.moveTurtleForward))
+    if (log) this.instructions.push(new Instruction(this, "MoveForward", this.moveTurtleForward))
     this.turtle.step();
   }
 
   turnTurtleTopAndStep(log: boolean = true): void {
-    console.log(log);
-    if (log) this.instructions.push(new Instruction("Top", this.turnTurtleTopAndStep))
+    if (log) this.instructions.push(new Instruction(this, "Top", this.turnTurtleTopAndStep))
     this.turtle.turnTop();
     this.turtle.step();
   }
 
   turnTurtleBottomAndStep(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction("Bottom", this.turnTurtleBottomAndStep))
+    if (log) this.instructions.push(new Instruction(this, "Bottom", this.turnTurtleBottomAndStep))
     this.turtle.turnBottom();
     this.turtle.step();
   }
 
   turnTurtleRightAndStep(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction("Right", this.turnTurtleRightAndStep))
+    if (log) this.instructions.push(new Instruction(this, "Right", this.turnTurtleRightAndStep))
     this.turtle.turnRight();
     this.turtle.step();
   }
@@ -220,9 +228,14 @@ export class AppComponent implements OnInit {
   }
 
   play(): void {
+    this.turtle.position = new Coordinates(this.parcours[0].x, this.parcours[0].y);
+     setTimeout(this.walk.bind(this, 0), 300);
+  }
 
-    this.instructions.forEach((ins) => {
-      ins.execute();
-    });
+  private walk(index:number):void {
+     if (index < this.instructions.length) {
+      this.instructions[index].instruction.call(this, false);
+      setTimeout(this.walk.bind(this, index+1), this.replayDelay);
+    }
   }
 }
