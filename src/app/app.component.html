@@ -18,17 +18,17 @@
     <div class="col-12" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours">
     </div>
   </div>
-  <div class="mx-auto rounded-circle" style="background-color: whitesmoke; width: 80px;" *ngIf="level == 1">
+  <div class="mx-auto rounded-circle" style="background-color: whitesmoke; width: 100px;" *ngIf="level == 1">
       <div class="col-12">
-        <i class="col-1 offset-1 fa fa-arrow-up" (click)="keyUp({key:'ArrowUp'})"></i>
+        <i class="col-1 offset-1 fa fa-2x fa-arrow-up" (click)="keyUp({key:'ArrowUp'})"></i>
       </div>
 
       <div class="col-12">
-        <i class="col-1 offset-6 fa fa-arrow-right" (click)="keyUp({key:'ArrowRight'})"></i>
+        <i class="col-1 offset-6 fa fa-2x fa-arrow-right" (click)="keyUp({key:'ArrowRight'})"></i>
       </div>
 
       <div class="col-12">
-        <i class="col-1 offset-1 fa fa-arrow-down" (click)="keyUp({key:'ArrowDown'})"></i>
+        <i class="col-1 offset-1 fa fa-2x fa-arrow-down" (click)="keyUp({key:'ArrowDown'})"></i>
       </div>
     </div>
   <div class="row p-1">
