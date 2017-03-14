@@ -15,22 +15,22 @@
     </div>
   </form>
   <div class="row  p-2">
-    <div class="col-9" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours">
-    </div>
-    <div class="col-1" *ngIf="level == 1">
-      <div class="row">
-        <i class="col-1 fa fa-arrow-up" (click)="keyUp({key:'ArrowUp'})"></i>
-      </div>
-
-      <div class="row">
-        <i class="col-1 offset-2 fa fa-arrow-right" (click)="keyUp({key:'ArrowRight'})"></i>
-      </div>
-
-      <div class="row">
-        <i class="col-1 fa fa-arrow-down" (click)="keyUp({key:'ArrowDown'})"></i>
-      </div>
+    <div class="col-12" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours">
     </div>
   </div>
+  <div class="mx-auto rounded-circle" style="background-color: whitesmoke; width: 80px;" *ngIf="level == 1">
+      <div class="col-12">
+        <i class="col-1 offset-1 fa fa-arrow-up" (click)="keyUp({key:'ArrowUp'})"></i>
+      </div>
+
+      <div class="col-12">
+        <i class="col-1 offset-6 fa fa-arrow-right" (click)="keyUp({key:'ArrowRight'})"></i>
+      </div>
+
+      <div class="col-12">
+        <i class="col-1 offset-1 fa fa-arrow-down" (click)="keyUp({key:'ArrowDown'})"></i>
+      </div>
+    </div>
   <div class="row p-1">
     <div class="col-1" *ngFor="let ins of instructions">
       <i class="fa" [ngClass]="{'fa-repeat': ins.label == '90', 
