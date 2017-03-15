@@ -1,37 +1,40 @@
-<div class="container">
-  <form>
-    <div class="form-group row">
-      <div class="col-1 col-form-label">
-        <i class="fa fa-2 fa-play" (click)="play()" alt="Rafraichir"></i>
-      </div>
-      <label class="col-2 p-1  col-form-label" for="level" style="white-space:nowrap;">Niv. {{level}}</label>
-      <div class="col-7 p-2">
-        <input class="form-control" type="range" placeholder="Niveau" min="1" max="4" step="1" [(ngModel)]="level" id="level" [ngModelOptions]="{standalone: true}">
-      </div>
-      <div class="col-1 col-form-label">
-        <i class="fa fa-2 fa-refresh" (click)="init()" alt="Rafraichir"></i>
-      </div>
+<div class="container-fluid p-0">
 
-    </div>
-  </form>
-  <div class="row  p-2">
-    <div class="col-12" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours">
+  <nav class="navbar navbar-light" style="background-color: rgba(227, 242, 253, 0.51)">
+    <form class="form-group m-0">
+      <button class="btn btn-outline-info btn-sm" (click)="init()">
+        <i class="fa fa-refresh" alt="Rafraichir"></i>
+      </button>
+      <button class="btn btn-outline-info float-right btn-sm">
+        <i class="fa fa-cog" alt="Param&egrave;tres"></i>
+      </button>
+    </form>
+  </nav>
+
+  <div class="row m-0">
+    <div class="col-12 col-md-4 offset-md-4" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours">
     </div>
   </div>
-  <div class="mx-auto rounded-circle" style="background-color: whitesmoke; width: 100px;" *ngIf="level == 1">
-      <div class="col-12">
-        <i class="col-1 offset-1 fa fa-2x fa-arrow-up" (click)="keyUp({key:'ArrowUp'})"></i>
-      </div>
-
-      <div class="col-12">
-        <i class="col-1 offset-6 fa fa-2x fa-arrow-right" (click)="keyUp({key:'ArrowRight'})"></i>
-      </div>
-
-      <div class="col-12">
-        <i class="col-1 offset-1 fa fa-2x fa-arrow-down" (click)="keyUp({key:'ArrowDown'})"></i>
-      </div>
+  <div class="row m-0 pt-1" *ngIf="level == 1">
+    <div class="col-4 offset-4 col-lg-2 offset-lg-5">
+      <button class="btn btn-outline-info btn-sm full-width">
+        <i class="fa fa-2x fa-arrow-up" (click)="keyUp({key:'ArrowUp'})"></i>
+      </button>
     </div>
-  <div class="row p-1">
+
+    <div class="col-4 offset-6 col-lg-2 offset-lg-6">
+      <button class="btn btn-outline-info btn-sm full-width">
+        <i class="fa fa-2x fa-arrow-right" (click)="keyUp({key:'ArrowRight'})"></i>
+      </button>
+    </div>
+
+    <div class="col-4 offset-4  col-lg-2 offset-lg-5">
+      <button class="btn btn-outline-info  btn-sm full-width">
+        <i class="fa fa-2x fa-arrow-down" (click)="keyUp({key:'ArrowDown'})"></i>
+      </button>
+    </div>
+  </div>
+  <div class="row m-0">
     <div class="col-1" *ngFor="let ins of instructions">
       <i class="fa" [ngClass]="{'fa-repeat': ins.label == '90', 
       'fa-arrow-up': ins.label == 'Top', 
@@ -42,7 +45,7 @@
     </div>
   </div>
 
-  <div class="row p-2">
+  <div class="row m-0">
     <span *ngIf="etat == 2" class="badge badge-success col-12">Gagn&eacute; !!!</span>
     <span *ngIf="etat == 3" class="badge badge-danger col-12">Perdu... Recommence</span>
   </div>
