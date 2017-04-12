@@ -13,12 +13,12 @@ export class AppComponent implements OnInit {
   /**
    * taille de la grille (fixee a 5, si modifiee il faut impacter le css en consequence... TODO)
    */
-  private size: number;
+  public size: number;
 
   /**
    * La tortue
    */
-  private turtle: Turtle;
+  public turtle: Turtle;
 
   /**
    * Le parcours
@@ -28,15 +28,15 @@ export class AppComponent implements OnInit {
   /**
    * instructions donnees a la tortue
    */
-  private instructions: Array<Instruction>;
+  public instructions: Array<Instruction>;
 
 
-  private etat: number; // 1 partie en cours, 2 partie gagnee, 3 partie perdue
+  public etat: number; // 1 partie en cours, 2 partie gagnee, 3 partie perdue
 
   /**
    * niveau d'utilisation (1 - easy, 2 - medium, 3 - hard, 4 - developer!!!)
    */
-  private level: number;
+  public level: number;
 
   /**
    * Delai pour le replay des instructions (100-1000)
