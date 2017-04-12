@@ -8,7 +8,7 @@ import {Coordinates} from "../coordinates";
 })
 export class GridComponent implements OnInit {
 
-  private cases:Array<Coordinates>;
+  public cases:Array<Coordinates>;
 
   @Input()
   public parcours:Array<Coordinates>;

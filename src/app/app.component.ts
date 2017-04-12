@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   /**
    * Le parcours
    */
-  private parcours: Array<Coordinates>;
+  public parcours: Array<Coordinates>;
 
   /**
    * instructions donnees a la tortue
