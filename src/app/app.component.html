@@ -1,4 +1,4 @@
-<div class="container-fluid p-0">
+<div class="container-fluid p-0" #listen>
 
   <nav class="navbar navbar-light" style="background-color: rgba(227, 242, 253, 0.51)">
     <form class="form-group m-0">
@@ -17,20 +17,20 @@
   </div>
   <div class="row m-0 pt-1" *ngIf="level == 1">
     <div class="col-4 offset-4 col-lg-2 offset-lg-5">
-      <button class="btn btn-outline-info btn-sm full-width">
-        <i class="fa fa-2x fa-arrow-up" (click)="keyUp({key:'ArrowUp'})"></i>
+      <button class="btn btn-outline-info btn-sm full-width" (click)="keyUp({key:'ArrowUp'})">
+        <i class="fa fa-2x fa-arrow-up"></i>
       </button>
     </div>
 
     <div class="col-4 offset-6 col-lg-2 offset-lg-6">
-      <button class="btn btn-outline-info btn-sm full-width">
-        <i class="fa fa-2x fa-arrow-right" (click)="keyUp({key:'ArrowRight'})"></i>
+      <button class="btn btn-outline-info btn-sm full-width" (click)="keyUp({key:'ArrowRight'})">
+        <i class="fa fa-2x fa-arrow-right"></i>
       </button>
     </div>
 
     <div class="col-4 offset-4  col-lg-2 offset-lg-5">
-      <button class="btn btn-outline-info  btn-sm full-width">
-        <i class="fa fa-2x fa-arrow-down" (click)="keyUp({key:'ArrowDown'})"></i>
+      <button class="btn btn-outline-info  btn-sm full-width" (click)="keyUp({key:'ArrowDown'})">
+        <i class="fa fa-2x fa-arrow-down" ></i>
       </button>
     </div>
   </div>

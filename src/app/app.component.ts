@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit, HostListener, ElementRef, ViewChild, Renderer2 } from "@angular/core";
 import { Coordinates } from "./coordinates";
 import { Turtle } from "./turtle";
 import { Instruction } from "./instruction";
@@ -43,6 +43,8 @@ export class AppComponent implements OnInit {
    */
   private replayDelay: number;
 
+  constructor(private renderer:Renderer2){}
+
   ngOnInit() {
     this.size = 5;
     this.level = 1;
@@ -51,6 +53,7 @@ export class AppComponent implements OnInit {
     this.turnTurtleTopAndStep.bind(this);
     this.turnTurtleBottomAndStep.bind(this);
     this.turnTurtleRightAndStep.bind(this);
+    this.renderer.listen('document', 'keyup', (event) => {this.keyUp(event);});
   }
 
   init(): void {
@@ -135,7 +138,6 @@ export class AppComponent implements OnInit {
     return this.parcours.filter((c: Coordinates) => c.x == possibleCoordinates.x && c.y == possibleCoordinates.y).length != 0;
   }
 
-  @HostListener('document:keyup', ['$event'])
   keyUp(event: KeyboardEvent) {
     if (this.etat == 1) {
       switch (event.key) {
