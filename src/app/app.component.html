@@ -1,41 +1,39 @@
-<div class="container-fluid p-0" #listen>
+<div #listen>
 
-  <nav class="navbar navbar-light" style="background-color: rgba(227, 242, 253, 0.51)">
-    <form class="form-group m-0">
-      <button class="btn btn-outline-info btn-sm" (click)="init()">
-        <i class="fa fa-refresh" alt="Rafraichir"></i>
-      </button>
-      <button class="btn btn-outline-info float-right btn-sm">
-        <i class="fa fa-cog" alt="Param&egrave;tres"></i>
-      </button>
-    </form>
+  <nav class="navbar" style="background-color: rgba(227, 242, 253, 0.51)">
+    <button class="btn" (click)="init()">
+      <i class="fa fa-refresh" alt="Rafraichir"></i>
+    </button>
+    <button class="btn">
+      <i class="fa fa-cog" alt="Param&egrave;tres"></i>
+    </button> 
   </nav>
 
-  <div class="row m-0">
-    <div class="col-12 col-md-4 offset-md-4" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours">
+  <div class="row">
+    <div class="parcours" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours">
     </div>
   </div>
-  <div class="row m-0 pt-1" *ngIf="level == 1">
-    <div class="col-4 offset-4 col-lg-2 offset-lg-5">
-      <button class="btn btn-outline-info btn-sm full-width" (click)="keyUp({key:'ArrowUp'})">
+  <div class="grid column" *ngIf="level == 1">
+    <div class="self-center">
+      <button class="btn btn-bigger rotate45" (click)="keyUp({key:'ArrowUp'})">
         <i class="fa fa-2x fa-arrow-up"></i>
       </button>
     </div>
 
-    <div class="col-4 offset-6 col-lg-2 offset-lg-6">
-      <button class="btn btn-outline-info btn-sm full-width" (click)="keyUp({key:'ArrowRight'})">
+    <div class="self-center">
+      <button class="btn btn-bigger rotate45 right-command-btn" (click)="keyUp({key:'ArrowRight'})">
         <i class="fa fa-2x fa-arrow-right"></i>
       </button>
     </div>
 
-    <div class="col-4 offset-4  col-lg-2 offset-lg-5">
-      <button class="btn btn-outline-info  btn-sm full-width" (click)="keyUp({key:'ArrowDown'})">
+    <div class="self-center">
+      <button class="btn btn-bigger rotate45 bottom-command-btn" (click)="keyUp({key:'ArrowDown'})">
         <i class="fa fa-2x fa-arrow-down" ></i>
       </button>
     </div>
   </div>
-  <div class="row m-0">
-    <div class="col-1" *ngFor="let ins of instructions">
+  <div class="row">
+    <div class="" *ngFor="let ins of instructions">
       <i class="fa" [ngClass]="{'fa-repeat': ins.label == '90', 
       'fa-arrow-up': ins.label == 'Top', 
       'fa-arrow-right': ins.label == 'Right',

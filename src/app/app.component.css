@@ -31,6 +31,82 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     font-size: 1.5em;
 }
 
-.full-width {
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
     width: 100%;
+}
+
+.parcours {
+    width: 33%;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: .5rem 1rem;
+    margin-bottom: 5px;
+}
+
+.btn {
+    align-items: flex-start;
+    height: 23px;
+    margin: 5px; 
+    color: #5bc0de;
+    background-image: none;
+    background-color: transparent;
+    border: solid 1px #5bc0de;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+}
+
+.btn-bigger {
+    margin-top: 15px; 
+    height: 40px;
+    width: 40px;
+}
+
+.right-command-btn {
+    margin-left: 67px;
+    margin-top: -14px;
+}
+
+.bottom-command-btn {
+    margin-top: -14px;
+    margin-left: 5px;
+}
+
+.rotate45 {
+    transform: rotate(45deg);
+} 
+
+.rotate45 > * {
+    transform: rotate(-45deg);
+}
+
+.grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.column {
+    flex-direction: column !important;
+    justify-content: center;
+}
+
+.self-center {
+    align-self: center;
 }
