@@ -1,51 +1,69 @@
-<div #listen>
+<nav class="navbar" style="background-color: rgba(227, 242, 253, 0.51)">
+  <button class="btn" (click)="init()">
+    <i class="fa fa-refresh" alt="Rafraichir"></i>
+  </button>
+  <button class="btn">
+    <i class="fa fa-cog" alt="Param&egrave;tres"></i>
+  </button>
+</nav>
 
-  <nav class="navbar" style="background-color: rgba(227, 242, 253, 0.51)">
-    <button class="btn" (click)="init()">
-      <i class="fa fa-refresh" alt="Rafraichir"></i>
-    </button>
-    <button class="btn">
-      <i class="fa fa-cog" alt="Param&egrave;tres"></i>
-    </button> 
-  </nav>
-
-  <div class="row">
-    <div class="parcours" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours">
-    </div>
+<div class="row">
+  <div class="parcours" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours" [turtleDirection]="turtle.direction">
   </div>
-  <div class="grid column" *ngIf="level == 1">
-    <div class="self-center">
-      <button class="btn btn-bigger rotate45" (click)="keyUp({key:'ArrowUp'})">
-        <i class="fa fa-2x fa-arrow-up"></i>
-      </button>
-    </div>
-
-    <div class="self-center">
-      <button class="btn btn-bigger rotate45 right-command-btn" (click)="keyUp({key:'ArrowRight'})">
-        <i class="fa fa-2x fa-arrow-right"></i>
-      </button>
-    </div>
-
-    <div class="self-center">
-      <button class="btn btn-bigger rotate45 bottom-command-btn" (click)="keyUp({key:'ArrowDown'})">
-        <i class="fa fa-2x fa-arrow-down" ></i>
-      </button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="" *ngFor="let ins of instructions">
-      <i class="fa" [ngClass]="{'fa-repeat': ins.label == '90', 
-      'fa-arrow-up': ins.label == 'Top', 
-      'fa-arrow-right': ins.label == 'Right',
-      'fa-arrow-down': ins.label == 'Bottom', 
-      'fa-undo': ins.label == '-90', 
-      'fa-play': ins.label == 'MoveForward'}" aria-hidden="true" style="font-size: 12px;"></i>
-    </div>
-  </div>
-
-  <div class="row m-0">
-    <span *ngIf="etat == 2" class="badge badge-success col-12">Gagn&eacute; !!!</span>
-    <span *ngIf="etat == 3" class="badge badge-danger col-12">Perdu... Recommence</span>
-  </div>
-
 </div>
+<div class="grid column" *ngIf="level == 1">
+  <div class="self-center">
+    <button class="btn btn-bigger rotate45" (click)="keyUp({key:'ArrowUp'})">
+      <i class="fa fa-2x fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <div class="self-center">
+    <button class="btn btn-bigger rotate45 right-command-btn" (click)="keyUp({key:'ArrowRight'})">
+      <i class="fa fa-2x fa-arrow-right"></i>
+    </button>
+  </div>
+
+  <div class="self-center">
+    <button class="btn btn-bigger rotate45 bottom-command-btn" (click)="keyUp({key:'ArrowDown'})">
+      <i class="fa fa-2x fa-arrow-down"></i>
+    </button>
+  </div>
+</div>
+
+<div class="grid column" *ngIf="level == 2">
+  <div class="self-center">
+    <button class="btn btn-bigger rotate45 top-command-btn" (click)="keyUp({key:'RotateLeft'})">
+      <i class="fa fa-2x fa-undo"></i>
+    </button>
+  </div>
+
+  <div class="self-center">
+    <button class="btn btn-bigger rotate45 right-command-btn" (click)="keyUp({key:'MoveForward'})">
+      <i class="fa fa-2x fa-arrow-right"></i>
+    </button>
+  </div>
+
+  <div class="self-center">
+    <button class="btn btn-bigger rotate45 bottom-command-btn" (click)="keyUp({key:'RotateRight'})">
+      <i class="fa fa-2x fa-repeat"></i>
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="" *ngFor="let ins of instructions">
+    <i class="fa" [ngClass]="{'fa-repeat': ins.label == '90',
+      'fa-arrow-up': ins.label == 'Top',
+      'fa-arrow-right': ins.label == 'Right',
+      'fa-arrow-down': ins.label == 'Bottom',
+      'fa-undo': ins.label == '-90',
+      'fa-play': ins.label == 'MoveForward'}" aria-hidden="true" style="font-size: 12px;"></i>
+  </div>
+</div>
+
+<div class="row m-0">
+  <span *ngIf="etat == 2" class="badge badge-success col-12">Gagn&eacute; !!!</span>
+  <span *ngIf="etat == 3" class="badge badge-danger col-12">Perdu... Recommence</span>
+</div>
+

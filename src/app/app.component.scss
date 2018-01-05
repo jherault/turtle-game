@@ -1,0 +1,139 @@
+input[type=range] {
+  /*removes default webkit styles*/
+  -webkit-appearance: none;
+
+  /*fix for FF unable to apply focus style bug */
+  border: 1px solid white;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: goldenrod;
+  margin-top: -4px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
+}
+
+.fa-1-5 {
+  font-size: 1.5em;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.parcours {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+@media screen and (max-width: 720px) {
+  .parcours {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 721px) {
+  .parcours {
+    width: 40%;
+  }
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: .5rem 1rem;
+  margin-bottom: 5px;
+}
+
+.btn {
+  align-items: flex-start;
+  height: 23px;
+  margin: 5px;
+  color: #5bc0de;
+  background: transparent none;
+  border: solid 1px #5bc0de;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+}
+
+.btn-bigger {
+  margin-top: 15px;
+  height: 40px;
+  width: 40px;
+}
+
+.right-command-btn {
+  margin-left: 63px;
+  margin-top: -16px;
+}
+
+.left-command-btn + .right-command-btn {
+  margin-left: 9px;
+  margin-top: -16px;
+}
+
+.left-command-btn {
+  margin-top: -16px;
+}
+
+.bottom-command-btn {
+  margin-top: -16px;
+  margin-left: 5px;
+}
+
+.rotate45 {
+  transform: rotate(45deg);
+}
+
+.rotate45 > * {
+  transform: rotate(-45deg);
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.column {
+  flex-direction: column !important;
+  justify-content: center;
+}
+
+.self-center {
+  align-self: center;
+}
+

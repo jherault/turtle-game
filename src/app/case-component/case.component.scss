@@ -1,0 +1,19 @@
+.case {
+  padding-bottom: 100%;
+  width: 100%;
+  position: relative;
+  background: url('../../assets/eau.jpg') no-repeat center center;
+  background-size: contain;
+}
+
+.belongToTheCourse {
+  @extend .case;
+  background: url('../../assets/sable.gif') center center;
+  background-size: contain;
+}
+
+.borderl {
+  background-image: url('../../assets/sable-with-bordure.gif');
+}
+
+

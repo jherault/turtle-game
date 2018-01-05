@@ -4,7 +4,7 @@ import {Coordinates} from "../coordinates";
 @Component({
   selector: '[case]',
   templateUrl: './case.component.html',
-  styleUrls: ['./case.component.css']
+  styleUrls: ['./case.component.scss']
 })
 export class CaseComponent implements OnInit {
 
@@ -13,9 +13,6 @@ export class CaseComponent implements OnInit {
 
   @Input()
   public isBelongToTheCourse:boolean;
-
-  @Input()
-  public isTheTurtleOver:boolean;
 
   constructor() { }
 

@@ -35,4 +35,8 @@ export class Coordinates {
   equals(p: Coordinates): boolean {
     return this.x == p.x && this.y == p.x;
   }
+
+  copy():Coordinates {
+    return new Coordinates(this.x, this.y);
+  }
 }

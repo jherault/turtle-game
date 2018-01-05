@@ -4,7 +4,7 @@ import {Coordinates} from "../coordinates";
 @Component({
   selector: '[appGridComponent]',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.css']
+  styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnInit {
 
@@ -15,6 +15,9 @@ export class GridComponent implements OnInit {
 
   @Input()
   public turtlePos:Coordinates;
+  @Input()
+  public turtleDirection:Coordinates;
+
 
   @Input()
   public size:number;

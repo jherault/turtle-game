@@ -1,0 +1,17 @@
+.grid {
+  width: 100%;
+}
+
+div[case] {
+  width: 20%;
+  z-index: 1;
+}
+
+.turtle {
+  padding-bottom: 20%;
+  width: 20%;
+  position: absolute;
+  background: url('../../assets/tortue.png') no-repeat center center;
+  background-size: contain;
+  z-index: 50000;
+}
