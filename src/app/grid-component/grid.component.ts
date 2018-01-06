@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, OnChanges, SimpleChange} from '@angular/core';
 import {Coordinates} from "../coordinates";
+import { Turtle } from 'app/turtle';
 
 @Component({
   selector: '[appGridComponent]',
@@ -11,12 +12,10 @@ export class GridComponent implements OnInit {
   public cases:Array<Coordinates>;
 
   @Input()
-  public parcours:Array<Coordinates>;
+  public turtle:Turtle; 
 
   @Input()
-  public turtlePos:Coordinates;
-  @Input()
-  public turtleDirection:Coordinates;
+  public parcours:Array<Coordinates>;
 
 
   @Input()

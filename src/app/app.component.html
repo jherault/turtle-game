@@ -8,7 +8,7 @@
 </nav>
 
 <div class="row">
-  <div class="parcours" appGridComponent [size]="size" [turtlePos]="turtle.position" [parcours]="parcours" [turtleDirection]="turtle.direction">
+  <div class="parcours" appGridComponent [size]="size" [turtle]="turtle" [parcours]="parcours">
   </div>
 </div>
 <div class="grid column" *ngIf="level == 1">

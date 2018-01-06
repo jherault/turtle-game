@@ -3,5 +3,5 @@
       [coordinates]="c"
       [isBelongToTheCourse]="belongToTheCourse(c)">
 </div>
-<div #turtleDiv class="turtle"></div>
+<div #turtleDiv class="turtle" [ngClass]="{'topOriented': turtle.direction.x == 0 && turtle.direction.y == 1, 'leftOriented': turtle.direction.x == -1 && turtle.direction.y == 0, 'bottomOriented': turtle.direction.x == 0 && turtle.direction.y == -1, 'rightOriented': turtle.direction.x == 1 && turtle.direction.y == 0}"></div>
 
