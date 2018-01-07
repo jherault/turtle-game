@@ -39,6 +39,11 @@ export class AppComponent implements OnInit {
   public level: number;
 
   /**
+   * Max level value
+   */
+  public max: number;
+
+  /**
    * Delai pour le replay des instructions (100-1000)
    */
   private replayDelay: number;

@@ -1,10 +1,21 @@
-<nav class="navbar" style="background-color: rgba(227, 242, 253, 0.51)">
-  <button class="btn" (click)="init()">
-    <i class="fa fa-refresh" alt="Rafraichir"></i>
-  </button>
-  <button class="btn">
-    <i class="fa fa-cog" alt="Param&egrave;tres"></i>
-  </button>
+<nav>
+	<ul>
+		<li>
+      <a class="btn" (click)="init()" style="height: inherit;">
+        <i class="fa fa-refresh" alt="Rafraichir"></i>
+      </a> 
+    </li>
+		<li>
+      <a class="btn"  style="height: inherit;">
+        <i class="fa fa-cog" alt="Param&egrave;tres"></i>
+      </a>
+			<div>
+				<ul>
+					<li>Niveau: <input type="range" [(ngModel)]="level" min="1" max="5" step="1"/></li>
+				</ul>
+			</div>
+		</li>
+	</ul>
 </nav>
 
 <div class="row">
