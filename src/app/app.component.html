@@ -3,7 +3,7 @@
 		<li>
       <a class="btn" (click)="init()" style="height: inherit;">
         <i class="fa fa-refresh" alt="Rafraichir"></i>
-      </a> 
+      </a>
     </li>
 		<li>
       <a class="btn"  style="height: inherit;">
@@ -22,10 +22,10 @@
   <div class="parcours" appGridComponent [size]="size" [turtle]="turtle" [parcours]="parcours">
   </div>
 </div>
-<div class="grid column" *ngIf="level == 1">
+<div class="grid column">
   <div class="self-center">
     <button class="btn btn-bigger rotate45" (click)="keyUp({key:'ArrowUp'})">
-      <i class="fa fa-2x fa-arrow-up"></i>
+      <i class="fa fa-2x" [ngClass]="{'fa-arrow-up': level == 1, 'fa-undo': level > 1}"></i>
     </button>
   </div>
 
@@ -37,27 +37,7 @@
 
   <div class="self-center">
     <button class="btn btn-bigger rotate45 bottom-command-btn" (click)="keyUp({key:'ArrowDown'})">
-      <i class="fa fa-2x fa-arrow-down"></i>
-    </button>
-  </div>
-</div>
-
-<div class="grid column" *ngIf="level == 2">
-  <div class="self-center">
-    <button class="btn btn-bigger rotate45 top-command-btn" (click)="keyUp({key:'RotateLeft'})">
-      <i class="fa fa-2x fa-undo"></i>
-    </button>
-  </div>
-
-  <div class="self-center">
-    <button class="btn btn-bigger rotate45 right-command-btn" (click)="keyUp({key:'MoveForward'})">
-      <i class="fa fa-2x fa-arrow-right"></i>
-    </button>
-  </div>
-
-  <div class="self-center">
-    <button class="btn btn-bigger rotate45 bottom-command-btn" (click)="keyUp({key:'RotateRight'})">
-      <i class="fa fa-2x fa-repeat"></i>
+      <i class="fa fa-2x" [ngClass]="{'fa-arrow-down': level == 1, 'fa-repeat': level > 1}"></i>
     </button>
   </div>
 </div>
