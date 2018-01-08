@@ -162,7 +162,8 @@ export class AppComponent implements OnInit {
     return this.parcours.filter((c: Coordinates) => c.x == possibleCoordinates.x && c.y == possibleCoordinates.y).length != 0;
   }
 
-  keyUp(event: KeyboardEvent) {
+  keyUp(evt: any) {
+    let event:KeyboardEvent = evt as KeyboardEvent;
     if (this.etat == 1) {
       switch (this.keyLevelBindingActions[`${this.level}`][event.key]) {
         //LEVEL 1
