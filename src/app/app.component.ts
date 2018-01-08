@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.size = 5;
     this.level = 2;
-    this.replayDelay = 200;
+    this.replayDelay = 100;
     this.init();
     this.turnTurtleTopAndStep.bind(this);
     this.turnTurtleBottomAndStep.bind(this);
@@ -251,7 +251,14 @@ export class AppComponent implements OnInit {
 
   play(): void {
     this.turtle.position = new Coordinates(this.parcours[0].x, this.parcours[0].y);
-    setTimeout(this.walk.bind(this, 0), 300);
+    this.turtle.direction = new Coordinates(this.parcours[1].x - this.parcours[0].x, this.parcours[1].y - this.parcours[0].y);
+    let arrRotation = [];
+    arrRotation["0-1"] = 0;
+    arrRotation["10"] = -90;
+    arrRotation["01"] = 180;
+    arrRotation["-10"] = 90;
+    this.turtle.rotation = arrRotation[`${this.turtle.direction.x}${this.turtle.direction.y}`];
+    setTimeout(this.walk.bind(this, 0), 1000);
   }
 
   private walk(index: number): void {
