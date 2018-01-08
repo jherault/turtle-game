@@ -38,10 +38,8 @@ export class AppComponent implements OnInit {
    */
   public level: number;
 
-  /**
-   * Max level value
-   */
-  public max: number;
+
+  public keyLevelBindingActions = [];
 
   /**
    * Delai pour le replay des instructions (100-1000)
@@ -55,7 +53,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.size = 5;
-    this.level = 1;
+    this.level = 2;
     this.replayDelay = 200;
     this.init();
     this.turnTurtleTopAndStep.bind(this);
@@ -64,6 +62,18 @@ export class AppComponent implements OnInit {
     this.renderer.listen('document', 'keyup', (event) => {
       this.keyUp(event);
     });
+
+    let level1ActionsBinding = [];
+    level1ActionsBinding["ArrowUp"] = "ArrowUp";
+    level1ActionsBinding["ArrowRight"] = "ArrowRight";
+    level1ActionsBinding["ArrowDown"] = "ArrowBottom";
+    let level2ActionsBinding = [];
+    level2ActionsBinding["ArrowUp"] = "RotateLeft";
+    level2ActionsBinding["ArrowRight"] = "MoveForward";
+    level2ActionsBinding["ArrowDown"] = "RotateRight";
+    this.keyLevelBindingActions["1"] = level1ActionsBinding;
+    this.keyLevelBindingActions["2"] = level2ActionsBinding;
+
   }
 
   init(): void {
@@ -151,7 +161,7 @@ export class AppComponent implements OnInit {
 
   keyUp(event: KeyboardEvent) {
     if (this.etat == 1) {
-      switch (event.key) {
+      switch (this.keyLevelBindingActions[`${this.level}`][event.key]) {
         //LEVEL 1
         case 'ArrowUp':
           if (this.turtle.position.y < this.size - 1) {
