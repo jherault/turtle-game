@@ -3,6 +3,7 @@ nav {
   padding: .5rem 1rem;
   margin: 5px;
   background-color: rgba(227, 242, 253, 0.51);
+  z-index: 100;
 
   > ul {
     margin: 0;
@@ -78,36 +79,89 @@ nav {
 }
 
 input[type=range] {
-  /*removes default webkit styles*/
   -webkit-appearance: none;
-
-  /*fix for FF unable to apply focus style bug */
-  border: 1px solid white;
+  width: 100%;
+  margin: 6px 0;
 }
-
-input[type=range]::-webkit-slider-runnable-track {
-  height: 5px;
-  background: #ddd;
-  border: none;
-  border-radius: 3px;
-}
-
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  border: none;
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  background: white;
-  margin-top: -4px;
-}
-
 input[type=range]:focus {
   outline: none;
 }
-
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #ffffff, 0px 0px 0px #ffffff;
+  background: #dddddd;
+  border-radius: 1.3px;
+  border: 0.2px solid #ffffff;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 1px solid #ffffff;
+  height: 16px;
+  width: 16px;
+  border-radius: 20px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -6.2px;
+}
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #ccc;
+  background: #eaeaea;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #ffffff, 0px 0px 0px #ffffff;
+  background: #dddddd;
+  border-radius: 1.3px;
+  border: 0.2px solid #ffffff;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 1px solid #ffffff;
+  height: 16px;
+  width: 16px;
+  border-radius: 20px;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #d0d0d0;
+  border: 0.2px solid #ffffff;
+  border-radius: 2.6px;
+  box-shadow: 0px 0px 0px #ffffff, 0px 0px 0px #ffffff;
+}
+input[type=range]::-ms-fill-upper {
+  background: #dddddd;
+  border: 0.2px solid #ffffff;
+  border-radius: 2.6px;
+  box-shadow: 0px 0px 0px #ffffff, 0px 0px 0px #ffffff;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 1px solid #ffffff;
+  height: 16px;
+  width: 16px;
+  border-radius: 20px;
+  background: #ffffff;
+  cursor: pointer;
+  height: 4px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #dddddd;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #eaeaea;
 }
 
 .fa-1-5 {
@@ -135,7 +189,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 
 @media screen and (min-width: 721px) {
   .parcours {
-    width: 40%;
+    width: 38%;
   }
 }
 
@@ -186,10 +240,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 
 .rotate45 {
   transform: rotate(45deg);
-}
 
-.rotate45 > * {
-  transform: rotate(-45deg);
+  > * {
+    transform: rotate(-45deg);
+  }
 }
 
 .grid {
@@ -206,4 +260,3 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 .self-center {
   align-self: center;
 }
-

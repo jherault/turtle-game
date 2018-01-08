@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   /**
    * Delai pour le replay des instructions (100-1000)
    */
-  private replayDelay: number;
+  public replayDelay: number;
 
   @ViewChild('turtleDiv') turtleDiv: ElementRef;
 
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.size = 5;
     this.level = 2;
-    this.replayDelay = 100;
+    this.replayDelay = 500;
     this.init();
     this.turnTurtleTopAndStep.bind(this);
     this.turnTurtleBottomAndStep.bind(this);

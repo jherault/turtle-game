@@ -11,8 +11,8 @@
       </a>
 			<div>
 				<ul>
-					<li>Niveau: <input type="range" [(ngModel)]="level" min="1" max="5" step="1"/></li>
-          <li>Vitesse rejeu: <input type="range" [(ngModel)]="replayDelay" min="250" max="3000" step="250"/></li>
+					<li>Difficult&eacute; {{level}} <input type="range" [(ngModel)]="level" min="1" max="5" step="1"/></li>
+          <li>Vitesse de rejeu {{replayDelay}} ms <input type="range" [(ngModel)]="replayDelay" min="250" max="3000" step="250"/></li>
 				</ul>
 			</div>
 		</li>
