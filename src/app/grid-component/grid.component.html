@@ -1,7 +1,9 @@
-
 <div case *ngFor="let c of cases"
-      [coordinates]="c"
-      [isBelongToTheCourse]="belongToTheCourse(c)">
+     [coordinates]="c"
+     [isBelongToTheCourse]="belongToTheCourse(c)">
 </div>
-<div #turtleDiv class="turtle" [ngClass]="{'topOriented': turtle.direction.x == 0 && turtle.direction.y == 1, 'leftOriented': turtle.direction.x == -1 && turtle.direction.y == 0, 'bottomOriented': turtle.direction.x == 0 && turtle.direction.y == -1, 'rightOriented': turtle.direction.x == 1 && turtle.direction.y == 0}"></div>
+<div #turtleDiv class="turtle"
+     [style.transform]="turtle.getRotation()"
+     [style.bottom]="turtle.position.y * 20 +'%'"
+     [style.left]="turtle.position.x * 20 +'%'"></div>
 

@@ -66,14 +66,13 @@ export class AppComponent implements OnInit {
     let level1ActionsBinding = [];
     level1ActionsBinding["ArrowUp"] = "ArrowUp";
     level1ActionsBinding["ArrowRight"] = "ArrowRight";
-    level1ActionsBinding["ArrowDown"] = "ArrowBottom";
+    level1ActionsBinding["ArrowDown"] = "ArrowDown";
     let level2ActionsBinding = [];
     level2ActionsBinding["ArrowUp"] = "RotateLeft";
     level2ActionsBinding["ArrowRight"] = "MoveForward";
     level2ActionsBinding["ArrowDown"] = "RotateRight";
     this.keyLevelBindingActions["1"] = level1ActionsBinding;
     this.keyLevelBindingActions["2"] = level2ActionsBinding;
-
   }
 
   init(): void {
@@ -83,7 +82,12 @@ export class AppComponent implements OnInit {
     this.turtle = new Turtle();
     this.turtle.position = new Coordinates(this.parcours[0].x, this.parcours[0].y);
     this.turtle.direction = new Coordinates(this.parcours[1].x - this.parcours[0].x, this.parcours[1].y - this.parcours[0].y);
-    this.computeTurtleViewPosition();
+    let arrRotation = [];
+    arrRotation["0-1"] = 0;
+    arrRotation["10"] = -90;
+    arrRotation["01"] = 180;
+    arrRotation["-10"] = 90;
+    this.turtle.rotation = arrRotation[`${this.turtle.direction.x}${this.turtle.direction.y}`];
   }
 
   /**
@@ -96,7 +100,6 @@ export class AppComponent implements OnInit {
     let xbegin: number = 0;
 
     this.parcours.push(new Coordinates(xbegin, ybegin));
-
 
     let possibleDirections: Array<Coordinates> = [{x: 0, y: -1}, {x: 1, y: 0}, {x: 0, y: 1}]
       .map((json: any) => new Coordinates(json.x, json.y));
@@ -186,13 +189,13 @@ export class AppComponent implements OnInit {
           this.rotateTurtleRight();
           break;
         case 'MoveForward':
-          this.moveTurtleForward();
+          if (!(this.rightCaseHasBorder() && this.turtle.direction.x == 1) && !(this.leftCaseHasBorder() && this.turtle.direction.x == -1)) {
+              this.moveTurtleForward();
+          }
           break;
         default:
           break;
       }
-
-      this.computeTurtleViewPosition();
 
       if (this.parcours[this.parcours.length - 1].x == this.turtle.position.x && this.parcours[this.parcours.length - 1].y == this.turtle.position.y) {
         this.etat = 2;
@@ -202,11 +205,6 @@ export class AppComponent implements OnInit {
         this.etat = 3;
       }
     }
-  }
-
-  private computeTurtleViewPosition(): void {
-    (<HTMLElement>document.querySelector('.turtle')).style.bottom = this.turtle.position.y * 20 +'%';
-    (<HTMLElement>document.querySelector('.turtle')).style.left = this.turtle.position.x * 20 +'%';
   }
 
   moveTurtleForward(log: boolean = true): void {
@@ -243,7 +241,11 @@ export class AppComponent implements OnInit {
   }
 
   rightCaseHasBorder(): boolean {
-    return this.parcours.filter(c => c.y == this.turtle.position.y && c.x == this.turtle.position.x + 1 && c.l).length == 1;
+    return this.parcours.filter(c => c.y == this.turtle.position.y && c.x == this.turtle.position.x + 1 && c.l).length === 1;
+  }
+
+  leftCaseHasBorder(): boolean {
+    return this.parcours.filter(c => c.y == this.turtle.position.y && c.x == this.turtle.position.x && c.l).length === 1;
   }
 
   play(): void {

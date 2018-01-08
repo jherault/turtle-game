@@ -5,6 +5,8 @@ export class Turtle {
   private _position: Coordinates;
   private _direction: Coordinates;
 
+  public rotation:number;
+
   step(): void {
     this.position.x += this.direction.x;
     this.position.y += this.direction.y;
@@ -62,6 +64,7 @@ export class Turtle {
     let y:number = this.direction.y;
     this.direction.x = y;
     this.direction.y = -x;
+    this.rotation += 90;
   }
 
   rotateLeft(): void {
@@ -69,6 +72,7 @@ export class Turtle {
     let y:number = this.direction.y;
     this.direction.x = -y;
     this.direction.y = x;
+    this.rotation -= 90;
   }
 
   get position(): Coordinates {
@@ -121,6 +125,10 @@ export class Turtle {
       count++;
     }
     return count;
+  }
+
+  public getRotation():string {
+    return `rotate(${this.rotation}deg)`;
   }
 
 }
