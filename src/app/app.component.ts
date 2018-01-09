@@ -73,6 +73,7 @@ export class AppComponent implements OnInit {
     level2ActionsBinding["ArrowDown"] = "RotateRight";
     this.keyLevelBindingActions["1"] = level1ActionsBinding;
     this.keyLevelBindingActions["2"] = level2ActionsBinding;
+    this.keyLevelBindingActions["3"] = level2ActionsBinding;
   }
 
   init(): void {
@@ -163,24 +164,18 @@ export class AppComponent implements OnInit {
   }
 
   keyUp(evt: any) {
-    let event:KeyboardEvent = evt as KeyboardEvent;
+    let event: KeyboardEvent = evt as KeyboardEvent;
     if (this.etat == 1) {
       switch (this.keyLevelBindingActions[`${this.level}`][event.key]) {
         //LEVEL 1
         case 'ArrowUp':
-          if (this.turtle.position.y < this.size - 1) {
-            this.turnTurtleTopAndStep();
-          }
+          this.turnTurtleTopAndStep();
           break;
         case 'ArrowDown':
-          if (this.turtle.position.y > 0) {
-            this.turnTurtleBottomAndStep();
-          }
+          this.turnTurtleBottomAndStep();
           break;
         case 'ArrowRight':
-          if (this.turtle.position.x < this.size - 1 && !this.rightCaseHasBorder()) {
-            this.turnTurtleRightAndStep();
-          }
+          this.turnTurtleRightAndStep();
           break;
         //LEVEL 2
         case 'RotateLeft':
@@ -190,55 +185,77 @@ export class AppComponent implements OnInit {
           this.rotateTurtleRight();
           break;
         case 'MoveForward':
-          if (!(this.rightCaseHasBorder() && this.turtle.direction.x == 1) && !(this.leftCaseHasBorder() && this.turtle.direction.x == -1)) {
-              this.moveTurtleForward();
-          }
+          this.moveTurtleForward();
           break;
         default:
           break;
       }
+    }
+  }
 
-      if (this.parcours[this.parcours.length - 1].x == this.turtle.position.x && this.parcours[this.parcours.length - 1].y == this.turtle.position.y) {
-        this.etat = 2;
-      } else if (this.parcours.filter((c) => {
-          return c.x == this.turtle.position.x && c.y == this.turtle.position.y
-        }).length == 0) {
-        this.etat = 3;
-      }
+  private isFinishedYet(): void {
+    if (this.parcours[this.parcours.length - 1].x == this.turtle.position.x && this.parcours[this.parcours.length - 1].y == this.turtle.position.y) {
+      this.etat = 2;
+    } else if (this.parcours.filter((c) => {
+        return c.x == this.turtle.position.x && c.y == this.turtle.position.y
+      }).length == 0) {
+      this.etat = 3;
     }
   }
 
   moveTurtleForward(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction(this, "MoveForward", this.moveTurtleForward))
-    this.turtle.step();
+    if (log) this.instructions.push(new Instruction(this, "MoveForward", this.moveTurtleForward));
+    if (this.level > 2 && !log || this.level < 3)
+      if (!(this.rightCaseHasBorder() && this.turtle.direction.x == 1) && !(this.leftCaseHasBorder() && this.turtle.direction.x == -1)) {
+        this.turtle.step();
+        this.isFinishedYet();
+      }
   }
 
   turnTurtleTopAndStep(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction(this, "Top", this.turnTurtleTopAndStep))
-    this.turtle.turnTop();
-    this.turtle.step();
+    if (log) this.instructions.push(new Instruction(this, "Top", this.turnTurtleTopAndStep));
+    if (this.level > 2 && !log || this.level < 3)
+      if (this.turtle.position.y < this.size - 1) {
+        this.turtle.turnTop();
+        this.turtle.step();
+        this.isFinishedYet();
+      }
   }
 
   turnTurtleBottomAndStep(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction(this, "Bottom", this.turnTurtleBottomAndStep))
-    this.turtle.turnBottom();
-    this.turtle.step();
+    if (log) this.instructions.push(new Instruction(this, "Bottom", this.turnTurtleBottomAndStep));
+    if (this.level > 2 && !log || this.level < 3)
+      if (this.turtle.position.y > 0) {
+        this.turtle.turnBottom();
+        this.turtle.step();
+        this.isFinishedYet();
+      }
   }
 
   turnTurtleRightAndStep(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction(this, "Right", this.turnTurtleRightAndStep))
-    this.turtle.turnRight();
-    this.turtle.step();
+    if (log) this.instructions.push(new Instruction(this, "Right", this.turnTurtleRightAndStep));
+    if (this.level > 2 && !log || this.level < 3)
+      if (this.turtle.position.x < this.size - 1 && !this.rightCaseHasBorder()) {
+        this.turtle.turnRight();
+        this.turtle.step();
+        this.isFinishedYet();
+      }
   }
 
   rotateTurtleLeft(log: boolean = true): void {
     if (log) this.instructions.push(new Instruction(this, "rotateLeft", this.rotateTurtleLeft));
-    this.turtle.rotateLeft();
+    if (this.level > 2 && !log || this.level < 3) {
+      this.turtle.rotateLeft();
+      this.isFinishedYet();
+    }
   }
 
   rotateTurtleRight(log: boolean = true): void {
     if (log) this.instructions.push(new Instruction(this, "rotateRight", this.rotateTurtleRight));
-    this.turtle.rotateRight();
+    if (this.level > 2 && !log || this.level < 3) {
+      this.turtle.rotateRight();
+      this.isFinishedYet();
+    }
   }
 
   rightCaseHasBorder(): boolean {
