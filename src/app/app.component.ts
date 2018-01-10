@@ -1,4 +1,4 @@
-import {Component, OnInit, HostListener, ElementRef, ViewChild, Renderer2} from "@angular/core";
+import {Component, OnInit, ElementRef, ViewChild, Renderer2} from "@angular/core";
 import {Coordinates} from "./coordinates";
 import {Turtle} from "./turtle";
 import {Instruction} from "./instruction";
@@ -243,7 +243,7 @@ export class AppComponent implements OnInit {
   }
 
   rotateTurtleLeft(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction(this, "rotateLeft", this.rotateTurtleLeft));
+    if (log) this.instructions.push(new Instruction(this, "RotateLeft", this.rotateTurtleLeft));
     if (this.level > 2 && !log || this.level < 3) {
       this.turtle.rotateLeft();
       this.isFinishedYet();
@@ -251,7 +251,7 @@ export class AppComponent implements OnInit {
   }
 
   rotateTurtleRight(log: boolean = true): void {
-    if (log) this.instructions.push(new Instruction(this, "rotateRight", this.rotateTurtleRight));
+    if (log) this.instructions.push(new Instruction(this, "RotateRight", this.rotateTurtleRight));
     if (this.level > 2 && !log || this.level < 3) {
       this.turtle.rotateRight();
       this.isFinishedYet();
